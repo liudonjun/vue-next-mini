@@ -1,1 +1,4 @@
-console.log('hello vue-next-mini');
+import { isArray } from "@vue/shared";
+
+console.log(isArray([]));
+
