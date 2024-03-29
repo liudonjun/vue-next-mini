@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../../dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script>
+
+    const { reactive, effect } = Vue
+
+    const obj = reactive({
+      name: '张三'
+    })
+
+    // 缺陷：
+    // 解构失去响应性
+    // reactive不能处理简单数据类型
+    const { name } = obj
+
+    effect(() => {
+      document.querySelector('#app').innerText = obj.name
+    })
+
+    setTimeout(() => {
+      obj.name = '李四'
+
+      console.log(name);
+    }, 2000)
+  </script>
+</body>
+
+</html>
