@@ -9,26 +9,18 @@
 </head>
 
 <body>
+  <div id="app"></div>
   <script>
 
-    const { reactive } = Vue
+    const { reactive, effect } = Vue
 
     const obj = reactive({
       name: '张三'
     })
 
-    // 依赖收集
-    console.log(obj.name);
-
-    // 依赖触发
-    obj.name = '李四'
-
-    /**
-     * log
-     * 依赖收集
-      张三
-      触发更新
-    **/
+    effect(() => {
+      document.querySelector('#app').innerText = obj.name
+    })
   </script>
 </body>
 
