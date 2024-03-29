@@ -24,8 +24,6 @@ export function track(target: object, key: unknown) {
   }
   // 为指定map，指定key 设置回调函数
   depsMap.set(key, activeEffect)
-  // 测试打印，查看数据结构
-  console.log(targetMap);
 }
 
 /**
@@ -35,8 +33,15 @@ export function track(target: object, key: unknown) {
  * @param value 
  */
 export function trigger(target: object, key: unknown, newValue: unknown) {
-  console.log('触发更新');
-
+  const depsMap = targetMap.get(target)
+  if (!depsMap) {
+    return
+  }
+  const effect = depsMap.get(key) as ReactiveEffect
+  if (!effect) {
+    return
+  }
+  effect.fn()
 }
 
 export function effect<T = any>(fn: () => T) {
