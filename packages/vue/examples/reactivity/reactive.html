@@ -17,8 +17,18 @@
       name: '张三'
     })
 
-    // proxy
-    console.log(obj);
+    // 依赖收集
+    console.log(obj.name);
+
+    // 依赖触发
+    obj.name = '李四'
+
+    /**
+     * log
+     * 依赖收集
+      张三
+      触发更新
+    **/
   </script>
 </body>
 
