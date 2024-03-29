@@ -1,3 +1,4 @@
+import { isObject } from "@vue/shared";
 import { mutableHandlers } from "./baseHandlers";
 
 /**
@@ -40,3 +41,4 @@ function createReactiveObject(target: object, baseHandlers: ProxyHandler<any>, p
   return proxy
 }
 
+export const toReactive = <T extends unknown>(value: T): T => isObject(value) ? reactive(value as object) : value
